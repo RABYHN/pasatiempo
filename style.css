@@ -1,326 +1,298 @@
-/* CSS Moderno para El Observatorio de la Mente */
+/* style.css */
 :root {
-  --bg-dark: #0f0d0c;
-  --card-bg: #181513;
-  --gold-primary: #d4af37;
-  --gold-light: #f5e6ca;
-  --red-accent: #8c2d19;
-  --text-light: #e6dfd5;
-  --text-muted: #a69c8d;
-  --font-serif: 'Merriweather', Georgia, serif;
-  --font-title: 'Cinzel', serif;
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-cyan: #38bdf8;
+    --accent-amber: #fbbf24;
+    --accent-purple: #c084fc;
+    --accent-rose: #fb7185;
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-light);
-  font-family: var(--font-serif);
-  line-height: 1.6;
-  padding: 2rem 1rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 1rem;
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 1200px;
+    width: 100%;
 }
 
-.titulo-principal {
-  font-family: var(--font-title);
-  font-size: 2.8rem;
-  color: var(--gold-primary);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+.header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
 }
 
-.subtitulo {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  font-style: italic;
+.visitor-counter {
+    display: inline-block;
+    background-color: var(--card-bg);
+    padding: 0.5rem 1.25rem;
+    border-radius: 2rem;
+    border: 1px solid #334155;
+    font-weight: bold;
+    color: var(--accent-cyan);
 }
 
-.frase-container {
-  max-width: 800px;
-  margin: 0 auto 3rem auto;
-  text-align: center;
-  padding: 1.5rem;
-  background: rgba(212, 175, 55, 0.05);
-  border-left: 3px solid var(--gold-primary);
-  border-right: 3px solid var(--gold-primary);
-  border-radius: 8px;
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    margin-bottom: 3rem;
 }
 
-.frase-capciosa {
-  font-size: 1.15rem;
-  color: var(--gold-light);
-  font-style: italic;
+.card {
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* Grilla de Galería */
-.galeria-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  max-width: 1400px;
-  margin: 0 auto;
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-cyan);
 }
 
-/* Tarjeta Estilo Museo */
-.tarjeta-psico {
-  background: var(--card-bg);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
-  perspective: 1000px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
+.canvas-container {
+    width: 100%;
+    height: 240px;
+    background-color: #0b1120;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.tarjeta-psico:hover {
-  transform: translateY(-10px) rotateX(4deg) rotateY(-4deg);
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 175, 55, 0.3);
-  border-color: var(--gold-primary);
+svg {
+    width: 100%;
+    height: 100%;
 }
 
-.imagen-wrapper {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: #12100e;
+.content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
-.imagen-svg {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.6s ease;
+.tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-cyan);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
 
-/* Animaciones SVG e Interacciones de Movimiento al Hover */
-.tarjeta-psico:hover .imagen-svg {
-  transform: scale(1.03);
+h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
 }
 
-/* Animaciones Internas al Hover */
-.tarjeta-psico:hover .anim-girar {
-  animation: girar 4s linear infinite;
+p.description {
+    font-size: 0.925rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
 }
 
-.tarjeta-psico:hover .anim-girar-lento {
-  animation: girar 10s linear infinite;
+.footer-quote {
+    border-top: 1px dashed #334155;
+    padding-top: 1rem;
+    font-size: 0.875rem;
+    background-color: rgba(15, 23, 42, 0.4);
+    margin: 0 -1.5rem -1.5rem -1.5rem;
+    padding: 1rem 1.5rem;
 }
 
-.tarjeta-psico:hover .anim-inversar {
-  animation: girar-inv 5s linear infinite;
+.phrase {
+    font-style: italic;
+    color: #e2e8f0;
+    margin-bottom: 0.5rem;
+    display: block;
 }
 
-.tarjeta-psico:hover .anim-pulsar {
-  animation: pulsar 1.5s ease-in-out infinite alternate;
+.trick-question {
+    font-weight: 600;
+    color: var(--accent-amber);
+    display: block;
 }
 
-.tarjeta-psico:hover .anim-onda {
-  animation: ondular 2s ease-in-out infinite alternate;
+/* === REGLA PRINCIPAL DE MOVIMIENTO AL PASAR EL CURSOR (HOVER PAUSE/RUN) === */
+
+/* Estado por defecto: Animación pausada exactamente donde esté */
+.card .anim-spin,
+.card .anim-pulse,
+.card .anim-slide,
+.card .anim-dash,
+.card .anim-float,
+.card .anim-swing {
+    animation-play-state: paused;
 }
 
-.tarjeta-psico:hover .anim-onda-inversa {
-  animation: ondular-inv 2s ease-in-out infinite alternate;
+/* Al colocar el cursor sobre la tarjeta: la animación se reanuda */
+.card:hover .anim-spin,
+.card:hover .anim-pulse,
+.card:hover .anim-slide,
+.card:hover .anim-dash,
+.card:hover .anim-float,
+.card:hover .anim-swing {
+    animation-play-state: running;
 }
 
-.tarjeta-psico:hover .anim-espiral {
-  animation: girar 6s ease-in-out infinite alternate;
+/* Definición de Animaciones */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-.tarjeta-psico:hover .anim-espiral-inv {
-  animation: girar-inv 6s ease-in-out infinite alternate;
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.15); opacity: 1; }
 }
 
-.tarjeta-psico:hover .anim-desplazar {
-  animation: desplazar 2s ease-in-out infinite alternate;
+@keyframes slide {
+    0%, 100% { transform: translateX(0px); }
+    50% { transform: translateX(80px); }
 }
 
-.tarjeta-psico:hover .anim-desplazar-inv {
-  animation: desplazar-inv 2s ease-in-out infinite alternate;
+@keyframes dash {
+    0% { stroke-dashoffset: 40; }
+    100% { stroke-dashoffset: 0; }
 }
 
-.tarjeta-psico:hover .anim-aguja-rapida {
-  animation: girar 1.5s linear infinite;
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
 }
 
-.tarjeta-psico:hover .anim-aguja-lenta {
-  animation: girar 8s linear infinite;
+@keyframes swing {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
 }
 
-.tarjeta-psico:hover .anim-cascada {
-  animation: pulsar 1s infinite alternate;
+/* Asignación de Clases de Animación */
+.anim-spin {
+    transform-origin: 150px 120px;
+    animation: spin 3s linear infinite;
 }
 
-/* Keyframes de Animaciones */
-@keyframes girar {
-  0% { transform: rotate(0deg); transform-origin: center; }
-  100% { transform: rotate(360deg); transform-origin: center; }
+.anim-pulse {
+    transform-origin: center;
+    animation: pulse 2.5s ease-in-out infinite;
 }
 
-@keyframes girar-inv {
-  0% { transform: rotate(0deg); transform-origin: center; }
-  100% { transform: rotate(-360deg); transform-origin: center; }
+.anim-slide {
+    animation: slide 3s ease-in-out infinite;
 }
 
-@keyframes pulsar {
-  0% { transform: scale(1); transform-origin: center; }
-  100% { transform: scale(1.25); fill: var(--gold-primary); transform-origin: center; }
+.anim-dash {
+    stroke-dasharray: 8, 8;
+    animation: dash 1.5s linear infinite;
 }
 
-@keyframes ondular {
-  0% { transform: translateY(-8px); }
-  100% { transform: translateY(8px); }
+.anim-float {
+    animation: float 3s ease-in-out infinite;
 }
 
-@keyframes ondular-inv {
-  0% { transform: translateY(8px); }
-  100% { transform: translateY(-8px); }
+.anim-swing {
+    animation: swing 3s ease-in-out infinite;
 }
 
-@keyframes desplazar {
-  0% { transform: translateX(-10px); }
-  100% { transform: translateX(10px); }
+/* === SECCIÓN DE COMENTARIOS === */
+.comments-section {
+    max-width: 1200px;
+    width: 100%;
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid #334155;
 }
 
-@keyframes desplazar-inv {
-  0% { transform: translateX(10px); }
-  100% { transform: translateX(-10px); }
+.comments-section h2 {
+    margin-bottom: 1.5rem;
+    color: var(--accent-cyan);
 }
 
-/* Texto de la tarjeta */
-.razonamiento-box {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  flex-grow: 1;
+#comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
-.razonamiento-box h3 {
-  font-family: var(--font-title);
-  color: var(--gold-primary);
-  font-size: 1.3rem;
+#comment-form input,
+#comment-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid #334155;
+    background-color: #0b1120;
+    color: var(--text-main);
+    font-family: inherit;
 }
 
-.categoria-tag {
-  font-size: 0.85rem;
-  color: var(--red-accent);
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 1px;
+#comment-form button {
+    align-self: flex-start;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: var(--accent-cyan);
+    color: #0f172a;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-.razonamiento-box p {
-  font-size: 0.95rem;
-  color: var(--text-light);
+#comment-form button:hover {
+    background-color: #0284c7;
+    color: #fff;
 }
 
-/* Sección Foro / Comentarios */
-.foro-seccion {
-  max-width: 900px;
-  margin: 4rem auto 2rem auto;
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.foro-card {
-  background: var(--card-bg);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+.comment-item {
+    background-color: #0b1120;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--accent-amber);
 }
 
-.foro-card h2 {
-  font-family: var(--font-title);
-  color: var(--gold-primary);
-  margin-bottom: 0.5rem;
-  text-align: center;
+.comment-author {
+    font-weight: bold;
+    color: var(--accent-amber);
+    margin-bottom: 0.25rem;
 }
 
-.foro-instrucciones {
-  text-align: center;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-}
-
-.foro-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.input-group input, .input-group textarea {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  background: #100e0d;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 6px;
-  color: var(--text-light);
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
-}
-
-.input-group input:focus, .input-group textarea:focus {
-  outline: none;
-  border-color: var(--gold-primary);
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
-}
-
-.btn-enviar {
-  background: var(--gold-primary);
-  color: #100e0d;
-  font-family: var(--font-title);
-  font-weight: bold;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  align-self: center;
-}
-
-.btn-enviar:hover {
-  background: var(--gold-light);
-  transform: scale(1.03);
-}
-
-.comentarios-contenedor {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  border-top: 1px solid rgba(212, 175, 55, 0.2);
-  padding-top: 1.5rem;
-}
-
-.comentario {
-  background: rgba(255, 255, 255, 0.02);
-  padding: 1rem;
-  border-radius: 6px;
-  border-left: 2px solid var(--gold-primary);
-}
-
-.comentario .autor {
-  font-weight: bold;
-  color: var(--gold-primary);
-  font-size: 0.9rem;
-  display: block;
-  margin-bottom: 0.3rem;
-}
-
-.comentario .texto {
-  font-size: 0.95rem;
-  color: var(--text-light);
+.comment-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
 }

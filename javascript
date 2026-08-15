@@ -1,55 +1,84 @@
-// JavaScript para interactividad de la Galería y el Foro
-document.addEventListener("DOMContentLoaded", () => {
-  // Manejo del formulario de comentarios / diálogo
-  const formOpinion = document.getElementById("form-opinion");
-  const comentariosContenedor = document.getElementById("comentarios-contenedor");
+// JavaScript.js
+document.addEventListener('DOMContentLoaded', () => {
 
-  if (formOpinion) {
-    formOpinion.addEventListener("submit", (e) => {
-      e.preventDefault();
+    // === 1. CONTADOR DE VISITANTES ===
+    const visitCountElem = document.getElementById('visit-count');
+    
+    // Obtener visitas previas del LocalStorage
+    let visits = localStorage.getItem('page_visits');
+    
+    if (!visits) {
+        visits = 1;
+    } else {
+        visits = parseInt(visits) + 1;
+    }
+    
+    // Guardar nuevo conteo y mostrar
+    localStorage.setItem('page_visits', visits);
+    visitCountElem.textContent = visits;
 
-      const nombre = document.getElementById("nombre-usuario").value.trim();
-      const opinion = document.getElementById("texto-opinion").value.trim();
+    // === 2. GESTIÓN DE COMENTARIOS ===
+    const commentForm = document.getElementById('comment-form');
+    const commentsContainer = document.getElementById('comments-container');
 
-      if (nombre && opinion) {
-        // Crear nuevo elemento de comentario
-        const nuevoComentario = document.createElement("div");
-        nuevoComentario.classList.add("comentario");
+    // Cargar comentarios guardados
+    const loadComments = () => {
+        const savedComments = JSON.parse(localStorage.getItem('user_comments')) || [];
+        commentsContainer.innerHTML = '';
+        
+        if (savedComments.length === 0) {
+            commentsContainer.innerHTML = '<p style="color: var(--text-muted);">Sé el primero en dejar un comentario.</p>';
+            return;
+        }
 
-        nuevoComentario.innerHTML = `
-          <span class="autor">${nombre}:</span>
-          <p class="texto">${opinion}</p>
-        `;
+        savedComments.forEach(comment => {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment-item';
+            commentDiv.innerHTML = `
+                <div class="comment-author">${escapeHTML(comment.author)}</div>
+                <div class="comment-text">${escapeHTML(comment.text)}</div>
+            `;
+            commentsContainer.appendChild(commentDiv);
+        });
+    };
 
-        // Insertar al inicio de la lista
-        comentariosContenedor.prepend(nuevoComentario);
+    // Función de seguridad básica
+    const escapeHTML = (str) => {
+        return str.replace(/[&<>'"]/g, 
+            tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag] || tag)
+        );
+    };
 
-        // Limpiar formulario
-        formOpinion.reset();
-      }
+    // Agregar nuevo comentario
+    commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const usernameInput = document.getElementById('username');
+        const commentTextInput = document.getElementById('comment-text');
+
+        const newComment = {
+            author: usernameInput.value.trim(),
+            text: commentTextInput.value.trim()
+        };
+
+        if (newComment.author && newComment.text) {
+            const savedComments = JSON.parse(localStorage.getItem('user_comments')) || [];
+            savedComments.unshift(newComment); // Añadir al inicio
+            localStorage.setItem('user_comments', JSON.stringify(savedComments));
+
+            usernameInput.value = '';
+            commentTextInput.value = '';
+            
+            loadComments();
+        }
     });
-  }
 
-  // Tilt e inclinación 3D en las tarjetas según el movimiento del cursor
-  const tarjetas = document.querySelectorAll(".tarjeta-psico");
-
-  tarjetas.forEach((tarjeta) => {
-    tarjeta.addEventListener("mousemove", (e) => {
-      const rect = tarjeta.getBoundingClientRect();
-      const x = e.clientX - rect.left; // Posición X dentro de la tarjeta
-      const y = e.clientY - rect.top;  // Posición Y dentro de la tarjeta
-
-      const centroX = rect.width / 2;
-      const centroY = rect.height / 2;
-
-      const rotarX = ((y - centroY) / centroY) * -12; // Ángulo máximo X
-      const rotarY = ((x - centroX) / centroX) * 12;  // Ángulo máximo Y
-
-      tarjeta.style.transform = `perspective(1000px) rotateX(${rotarX}deg) rotateY(${rotarY}deg) translateY(-8px)`;
-    });
-
-    tarjeta.addEventListener("mouseleave", () => {
-      tarjeta.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
-    });
-  });
+    // Carga inicial
+    loadComments();
 });
