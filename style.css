@@ -1,13 +1,14 @@
-/* RESET Y VARIABLES GLOBALES (ESTILO CLÁSICO & ACADÉMICO) */
+/* CSS Moderno para El Observatorio de la Mente */
 :root {
-  --color-fondo: #12100e;
-  --color-card: #1c1815;
-  --color-dorado: #d4af37;
-  --color-terracota: #8c2d19;
-  --color-texto: #e6dfd5;
-  --color-texto-suave: #a89f91;
-  --fuente-titulo: 'Cinzel', serif;
-  --fuente-cuerpo: 'Merriweather', serif;
+  --bg-dark: #0f0d0c;
+  --card-bg: #181513;
+  --gold-primary: #d4af37;
+  --gold-light: #f5e6ca;
+  --red-accent: #8c2d19;
+  --text-light: #e6dfd5;
+  --text-muted: #a69c8d;
+  --font-serif: 'Merriweather', Georgia, serif;
+  --font-title: 'Cinzel', serif;
 }
 
 * {
@@ -17,87 +18,84 @@
 }
 
 body {
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
-  font-family: var(--fuente-cuerpo);
-  line-height: 1.7;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--font-serif);
+  line-height: 1.6;
   padding: 2rem 1rem;
 }
 
-/* ENCABEZADO */
 .header {
   text-align: center;
-  padding: 3rem 1rem 1.5rem;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-  max-width: 900px;
-  margin: 0 auto 2.5rem auto;
+  margin-bottom: 2rem;
 }
 
 .titulo-principal {
-  font-family: var(--fuente-titulo);
-  font-size: 2.5rem;
-  color: var(--color-dorado);
+  font-family: var(--font-title);
+  font-size: 2.8rem;
+  color: var(--gold-primary);
+  text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
 
 .subtitulo {
   font-size: 1.1rem;
-  color: var(--color-texto-suave);
+  color: var(--text-muted);
   font-style: italic;
 }
 
-/* FRASE CAPCIOSA EDUCATIVA */
 .frase-container {
   max-width: 800px;
-  margin: 0 auto 3.5rem auto;
+  margin: 0 auto 3rem auto;
   text-align: center;
+  padding: 1.5rem;
+  background: rgba(212, 175, 55, 0.05);
+  border-left: 3px solid var(--gold-primary);
+  border-right: 3px solid var(--gold-primary);
+  border-radius: 8px;
 }
 
 .frase-capciosa {
-  font-size: 1.25rem;
-  color: #f5e6ca;
-  background: linear-gradient(145deg, #181513, #221d1a);
-  padding: 2rem;
-  border-left: 4px solid var(--color-dorado);
-  border-right: 4px solid var(--color-dorado);
-  border-radius: 6px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  font-size: 1.15rem;
+  color: var(--gold-light);
   font-style: italic;
 }
 
-/* GALERÍA Y TARJETAS CON EFECTO DE MOVIMIENTO */
+/* Grilla de Galería */
 .galeria-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
-  max-width: 1100px;
-  margin: 0 auto 4rem auto;
-  perspective: 1000px; /* Habilita perspectiva 3D */
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
+/* Tarjeta Estilo Museo */
 .tarjeta-psico {
-  background-color: var(--color-card);
+  background: var(--card-bg);
   border: 1px solid rgba(212, 175, 55, 0.2);
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease, border-color 0.5s ease;
-  transform-style: preserve-3d;
+  transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+  perspective: 1000px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Estado al pasar el cursor (Hover) */
 .tarjeta-psico:hover {
-  border-color: var(--color-dorado);
-  box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+  transform: translateY(-10px) rotateX(4deg) rotateY(-4deg);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 175, 55, 0.3);
+  border-color: var(--gold-primary);
 }
 
 .imagen-wrapper {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background-color: #0d0b0a;
+  background: #12100e;
 }
 
 .imagen-svg {
@@ -107,142 +105,222 @@ body {
   transition: transform 0.6s ease;
 }
 
-/* Animaciones SVG internas */
-.tarjeta-psico:hover .ojo-central {
-  transform: scale(1.2);
-  transform-origin: center;
-  transition: transform 0.4s ease;
+/* Animaciones SVG e Interacciones de Movimiento al Hover */
+.tarjeta-psico:hover .imagen-svg {
+  transform: scale(1.03);
 }
 
-.tarjeta-psico:hover .circulo-pulsante {
-  stroke: #d4af37;
-  stroke-width: 5;
-  transition: all 0.4s ease;
+/* Animaciones Internas al Hover */
+.tarjeta-psico:hover .anim-girar {
+  animation: girar 4s linear infinite;
 }
 
-.tarjeta-psico:hover .espiral {
-  stroke-dasharray: 10;
+.tarjeta-psico:hover .anim-girar-lento {
+  animation: girar 10s linear infinite;
+}
+
+.tarjeta-psico:hover .anim-inversar {
+  animation: girar-inv 5s linear infinite;
+}
+
+.tarjeta-psico:hover .anim-pulsar {
+  animation: pulsar 1.5s ease-in-out infinite alternate;
+}
+
+.tarjeta-psico:hover .anim-onda {
+  animation: ondular 2s ease-in-out infinite alternate;
+}
+
+.tarjeta-psico:hover .anim-onda-inversa {
+  animation: ondular-inv 2s ease-in-out infinite alternate;
+}
+
+.tarjeta-psico:hover .anim-espiral {
+  animation: girar 6s ease-in-out infinite alternate;
+}
+
+.tarjeta-psico:hover .anim-espiral-inv {
+  animation: girar-inv 6s ease-in-out infinite alternate;
+}
+
+.tarjeta-psico:hover .anim-desplazar {
+  animation: desplazar 2s ease-in-out infinite alternate;
+}
+
+.tarjeta-psico:hover .anim-desplazar-inv {
+  animation: desplazar-inv 2s ease-in-out infinite alternate;
+}
+
+.tarjeta-psico:hover .anim-aguja-rapida {
+  animation: girar 1.5s linear infinite;
+}
+
+.tarjeta-psico:hover .anim-aguja-lenta {
   animation: girar 8s linear infinite;
 }
 
-@keyframes girar {
-  from { transform: rotate(0deg); transform-origin: center; }
-  to { transform: rotate(360deg); transform-origin: center; }
+.tarjeta-psico:hover .anim-cascada {
+  animation: pulsar 1s infinite alternate;
 }
 
-/* Razonamiento explicativo */
+/* Keyframes de Animaciones */
+@keyframes girar {
+  0% { transform: rotate(0deg); transform-origin: center; }
+  100% { transform: rotate(360deg); transform-origin: center; }
+}
+
+@keyframes girar-inv {
+  0% { transform: rotate(0deg); transform-origin: center; }
+  100% { transform: rotate(-360deg); transform-origin: center; }
+}
+
+@keyframes pulsar {
+  0% { transform: scale(1); transform-origin: center; }
+  100% { transform: scale(1.25); fill: var(--gold-primary); transform-origin: center; }
+}
+
+@keyframes ondular {
+  0% { transform: translateY(-8px); }
+  100% { transform: translateY(8px); }
+}
+
+@keyframes ondular-inv {
+  0% { transform: translateY(8px); }
+  100% { transform: translateY(-8px); }
+}
+
+@keyframes desplazar {
+  0% { transform: translateX(-10px); }
+  100% { transform: translateX(10px); }
+}
+
+@keyframes desplazar-inv {
+  0% { transform: translateX(10px); }
+  100% { transform: translateX(-10px); }
+}
+
+/* Texto de la tarjeta */
 .razonamiento-box {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
 }
 
 .razonamiento-box h3 {
-  font-family: var(--fuente-titulo);
-  color: var(--color-dorado);
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-title);
+  color: var(--gold-primary);
+  font-size: 1.3rem;
+}
+
+.categoria-tag {
+  font-size: 0.85rem;
+  color: var(--red-accent);
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .razonamiento-box p {
   font-size: 0.95rem;
-  color: var(--color-texto-suave);
+  color: var(--text-light);
 }
 
-/* SECCIÓN DE DIÁLOGO / FORO */
+/* Sección Foro / Comentarios */
 .foro-seccion {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 4rem auto 2rem auto;
 }
 
 .foro-card {
-  background-color: var(--color-card);
+  background: var(--card-bg);
   border: 1px solid rgba(212, 175, 55, 0.3);
-  padding: 2.5rem;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .foro-card h2 {
-  font-family: var(--fuente-titulo);
-  color: var(--color-dorado);
+  font-family: var(--font-title);
+  color: var(--gold-primary);
   margin-bottom: 0.5rem;
   text-align: center;
 }
 
 .foro-instrucciones {
   text-align: center;
-  color: var(--color-texto-suave);
-  margin-bottom: 2rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
   font-size: 0.95rem;
 }
 
 .foro-form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  margin-bottom: 2.5rem;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.input-group input,
-.input-group textarea {
+.input-group input, .input-group textarea {
   width: 100%;
-  background-color: #12100e;
-  border: 1px solid #3d352e;
-  color: var(--color-texto);
   padding: 0.8rem 1rem;
-  border-radius: 4px;
-  font-family: var(--fuente-cuerpo);
+  background: #100e0d;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 6px;
+  color: var(--text-light);
+  font-family: var(--font-serif);
   font-size: 0.95rem;
-  transition: border-color 0.3s ease;
 }
 
-.input-group input:focus,
-.input-group textarea:focus {
+.input-group input:focus, .input-group textarea:focus {
   outline: none;
-  border-color: var(--color-dorado);
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
 }
 
 .btn-enviar {
-  background-color: var(--color-terracota);
-  color: #fff;
+  background: var(--gold-primary);
+  color: #100e0d;
+  font-family: var(--font-title);
+  font-weight: bold;
+  padding: 0.8rem 1.5rem;
   border: none;
-  padding: 0.9rem;
-  font-family: var(--fuente-titulo);
-  font-size: 1rem;
-  letter-spacing: 1px;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
+  align-self: center;
 }
 
 .btn-enviar:hover {
-  background-color: #a63720;
+  background: var(--gold-light);
+  transform: scale(1.03);
 }
 
-/* Lista de Comentarios */
 .comentarios-contenedor {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
   padding-top: 1.5rem;
 }
 
 .comentario {
-  background-color: #14110f;
+  background: rgba(255, 255, 255, 0.02);
   padding: 1rem;
-  border-left: 3px solid var(--color-dorado);
-  border-radius: 0 4px 4px 0;
+  border-radius: 6px;
+  border-left: 2px solid var(--gold-primary);
 }
 
 .comentario .autor {
   font-weight: bold;
-  color: var(--color-dorado);
+  color: var(--gold-primary);
   font-size: 0.9rem;
   display: block;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
 }
 
 .comentario .texto {
   font-size: 0.95rem;
-  color: var(--color-texto);
+  color: var(--text-light);
 }

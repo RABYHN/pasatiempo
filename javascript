@@ -1,11 +1,40 @@
-document.addEventListener('DOMContentLoaded', () => {
+// JavaScript para interactividad de la Galería y el Foro
+document.addEventListener("DOMContentLoaded", () => {
+  // Manejo del formulario de comentarios / diálogo
+  const formOpinion = document.getElementById("form-opinion");
+  const comentariosContenedor = document.getElementById("comentarios-contenedor");
 
-  // 1. EFECTO DE MOVIMIENTO 3D INTERACTIVO AL PASAR EL CURSOR
-  const tarjetas = document.querySelectorAll('.tarjeta-psico');
+  if (formOpinion) {
+    formOpinion.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-  tarjetas.forEach(tarjeta => {
-    // Al mover el cursor dentro de la imagen
-    tarjeta.addEventListener('mousemove', (e) => {
+      const nombre = document.getElementById("nombre-usuario").value.trim();
+      const opinion = document.getElementById("texto-opinion").value.trim();
+
+      if (nombre && opinion) {
+        // Crear nuevo elemento de comentario
+        const nuevoComentario = document.createElement("div");
+        nuevoComentario.classList.add("comentario");
+
+        nuevoComentario.innerHTML = `
+          <span class="autor">${nombre}:</span>
+          <p class="texto">${opinion}</p>
+        `;
+
+        // Insertar al inicio de la lista
+        comentariosContenedor.prepend(nuevoComentario);
+
+        // Limpiar formulario
+        formOpinion.reset();
+      }
+    });
+  }
+
+  // Tilt e inclinación 3D en las tarjetas según el movimiento del cursor
+  const tarjetas = document.querySelectorAll(".tarjeta-psico");
+
+  tarjetas.forEach((tarjeta) => {
+    tarjeta.addEventListener("mousemove", (e) => {
       const rect = tarjeta.getBoundingClientRect();
       const x = e.clientX - rect.left; // Posición X dentro de la tarjeta
       const y = e.clientY - rect.top;  // Posición Y dentro de la tarjeta
@@ -13,71 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const centroX = rect.width / 2;
       const centroY = rect.height / 2;
 
-      // Calcular rotación en grados
-      const rotacionX = ((y - centroY) / centroY) * -12;
-      const rotacionY = ((x - centroX) / centroX) * 12;
+      const rotarX = ((y - centroY) / centroY) * -12; // Ángulo máximo X
+      const rotarY = ((x - centroX) / centroX) * 12;  // Ángulo máximo Y
 
-      // Aplicar transformación 3D suave
-      tarjeta.style.transform = `perspective(1000px) rotateX(${rotacionX}deg) rotateY(${rotacionY}deg) scale3d(1.02, 1.02, 1.02)`;
+      tarjeta.style.transform = `perspective(1000px) rotateX(${rotarX}deg) rotateY(${rotarY}deg) translateY(-8px)`;
     });
 
-    // Al quitar el cursor, vuelve exactamente a su estado original
-    tarjeta.addEventListener('mouseleave', () => {
-      tarjeta.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    tarjeta.addEventListener("mouseleave", () => {
+      tarjeta.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
     });
   });
-
-  // 2. LÓGICA DE LA BARRA DE DIÁLOGO Y OPINIONES
-  const formOpinion = document.getElementById('form-opinion');
-  const inputNombre = document.getElementById('nombre-usuario');
-  const inputTexto = document.getElementById('texto-opinion');
-  const contenedorComentarios = document.getElementById('comentarios-contenedor');
-
-  formOpinion.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const nombre = inputNombre.value.trim();
-    const texto = inputTexto.value.trim();
-
-    if (nombre !== '' && texto !== '') {
-      // Crear elemento de comentario
-      const nuevoComentario = document.createElement('div');
-      nuevoComentario.classList.add('comentario');
-
-      nuevoComentario.innerHTML = `
-        <span class="autor">${escapeHTML(nombre)}:</span>
-        <p class="texto">${escapeHTML(texto)}</p>
-      `;
-
-      // Insertar al inicio de la lista con animación
-      nuevoComentario.style.opacity = '0';
-      nuevoComentario.style.transform = 'translateY(-10px)';
-      nuevoComentario.style.transition = 'all 0.4s ease';
-
-      contenedorComentarios.prepend(nuevoComentario);
-
-      setTimeout(() => {
-        nuevoComentario.style.opacity = '1';
-        nuevoComentario.style.transform = 'translateY(0)';
-      }, 50);
-
-      // Limpiar el formulario
-      inputNombre.value = '';
-      inputTexto.value = '';
-    }
-  });
-
-  // Función de seguridad para evitar inyección de código
-  function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, 
-      tag => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        "'": '&#39;',
-        '"': '&quot;'
-      }[tag] || tag)
-    );
-  }
-
 });
