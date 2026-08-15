@@ -1,13 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>inventos</title>
-    <link rel="stylesheet" href="style.css">
-    </link:javascript>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Observatorio del Pensamiento - Pasatiempo Filosófico</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Merriweather:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+
+  <!-- Encabezado Principal -->
+  <header class="header">
+    <h1 class="titulo-principal">El Observatorio de la Mente</h1>
+    <p class="subtitulo">Un pasatiempo de introspección psicológica y lógica social</p>
+  </header>
+
+  <!-- Frase Capciosa y Educativa -->
+  <section class="frase-container">
+    <blockquote class="frase-capciosa">
+      «Ves con los ojos, pero entiendes con tu historia: aquello que crees observar en la obra no está en el lienzo, sino en el observador. ¿Te atreves a explorar lo que cada figura revela sobre ti?»
+    </blockquote>
+  </section>
+
+  <!-- Galería de Imágenes Interactivas -->
+  <main class="galeria-container">
+
+    <!-- Tarjeta 1: La Ilusión de la Percepción -->
+    <article class="tarjeta-psico" data-tilt>
+      <div class="imagen-wrapper">
+        <svg class="imagen-svg" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="grad1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#f5e6ca" />
+              <stop offset="100%" stop-color="#1c1917" />
+            </radialGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="#2a2421" />
+          <!-- Marco Clásico Interactivo -->
+          <circle cx="200" cy="220" r="140" fill="url(#grad1)" opacity="0.8" class="capa-luz" />
+          <path d="M 120 380 Q 200 120 280 380 Z" fill="none" stroke="#d4af37" stroke-width="2" class="forma-dinamica" />
+          <circle cx="200" cy="200" r="45" fill="#8c2d19" class="ojo-central" />
+          <circle cx="200" cy="200" r="18" fill="#f5e6ca" />
+          <text x="200" y="450" text-anchor="middle" fill="#d4af37" font-family="Cinzel" font-size="18">I. La Matriz de la Percepción</text>
+        </svg>
+        <div class="brillo-hover"></div>
+      </div>
+      <div class="razonamiento-box">
+        <h3>Razonamiento Psicológico</h3>
+        <p>Nuestro cerebro tiende a completar patrones visuales complejos usando experiencias previas. Tu atención revela si tiendes al análisis analítico o a la empatía intuitiva.</p>
+      </div>
+    </article>
+
+    <!-- Tarjeta 2: La Red de la Conexión Social -->
+    <article class="tarjeta-psico" data-tilt>
+      <div class="imagen-wrapper">
+        <svg class="imagen-svg" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100%" height="100%" fill="#1e242b" />
+          <line x1="80" y1="150" x2="320" y2="350" stroke="#d4af37" stroke-width="1.5" class="linea-conexion" />
+          <line x1="320" y1="150" x2="80" y2="350" stroke="#d4af37" stroke-width="1.5" class="linea-conexion" />
+          <circle cx="200" cy="250" r="80" fill="none" stroke="#b85b35" stroke-width="3" class="circulo-pulsante" />
+          <circle cx="80" cy="150" r="25" fill="#d4af37" />
+          <circle cx="320" cy="150" r="25" fill="#d4af37" />
+          <circle cx="80" cy="350" r="25" fill="#d4af37" />
+          <circle cx="320" cy="350" r="25" fill="#d4af37" />
+          <text x="200" y="450" text-anchor="middle" fill="#d4af37" font-family="Cinzel" font-size="18">II. El Espejo Social</text>
+        </svg>
+        <div class="brillo-hover"></div>
+      </div>
+      <div class="razonamiento-box">
+        <h3>Razonamiento Social</h3>
+        <p>Ningún pensamiento existe de forma aislada. La forma en que percibes a los demás altera la estructura de tus propios juicios morales y decisiones diarias.</p>
+      </div>
+    </article>
+
+    <!-- Tarjeta 3: El Laberinto de las Decisiones -->
+    <article class="tarjeta-psico" data-tilt>
+      <div class="imagen-wrapper">
+        <svg class="imagen-svg" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100%" height="100%" fill="#261c1a" />
+          <path d="M 100 250 A 100 100 0 0 1 300 250 A 100 100 0 0 1 100 250" fill="none" stroke="#8c2d19" stroke-width="4" class="espiral" />
+          <path d="M 140 250 A 60 60 0 0 1 260 250 A 60 60 0 0 1 140 250" fill="none" stroke="#d4af37" stroke-width="2" class="espiral" />
+          <polygon points="200,190 215,230 255,230 222,255 235,295 200,270 165,295 178,255 145,230 185,230" fill="#d4af37" class="estrella-centro" />
+          <text x="200" y="450" text-anchor="middle" fill="#d4af37" font-family="Cinzel" font-size="18">III. La Paradoja de la Elección</text>
+        </svg>
+        <div class="brillo-hover"></div>
+      </div>
+      <div class="razonamiento-box">
+        <h3>Razonamiento Lógico</h3>
+        <p>A mayor número de opciones, la mente experimenta parálisis por análisis. Buscar el camino óptimo suele distraernos de disfrutar la travesía misma.</p>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Barra de Diálogo y Comentarios -->
+  <section class="foro-seccion">
+    <div class="foro-card">
+      <h2>Barra de Diálogo & Reflexión</h2>
+      <p class="foro-instrucciones">¿Qué detalles observaste en las obras que otros hayan pasado por alto? Deja tu opinión para la comunidad.</p>
+      
+      <form id="form-opinion" class="foro-form">
+        <div class="input-group">
+          <input type="text" id="nombre-usuario" placeholder="Tu nombre o seudónimo" required>
+        </div>
+        <div class="input-group">
+          <textarea id="texto-opinion" rows="3" placeholder="Escribe tu reflexión psicológica o social aquí..." required></textarea>
+        </div>
+        <button type="submit" class="btn-enviar">Compartir Reflexión</button>
+      </form>
+
+      <div class="comentarios-contenedor" id="comentarios-contenedor">
+        <!-- Comentarios iniciales de ejemplo -->
+        <div class="comentario">
+          <span class="autor">Valeria M. (Psicóloga):</span>
+          <p class="texto">La primera imagen transmite muy bien la teoría de la Gestalt. Al colocar el cursor se nota la transición de la forma al fondo.</p>
+        </div>
+        <div class="comentario">
+          <span class="autor">Marcos S.:</span>
+          <p class="texto">El efecto 3D al pasar el ratón hace que sientas que estás manipulando un objeto físico en un museo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="JavaScript.js"></script>
 </body>
 </html>
